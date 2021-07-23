@@ -1,0 +1,385 @@
+
+/// Task__1///
+import java.util.Scanner;
+public class Task1{
+    public static void main(String [] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the index of array: ");
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        System.out.println("Enter the elements of array: ");
+        for (int i = 0;i<n;i++){
+            int l=sc.nextInt();
+            a[i]=l;
+        }
+        System.out.println("Enter the index from where you want to shift: ");
+        int k=sc.nextInt();
+        shiftLeft(a, k);
+        sc.close();
+        }
+    public static void shiftLeft (int[] source, int k) {
+        for(int i=0;i<source.length;i++){
+            int j=i+k;
+            if(i<k){    // only works in middle number. Problem: Index __ out of bounds for lengths //
+                source[i]=source[j];
+            }
+            else{
+                source[i]=0;
+            }
+        }
+        for(int i=0;i<source.length;i++){
+            System.out.print(source[i]+",");
+
+}
+}
+}
+
+**************************************************************************************************************************************************************************
+
+/// Task__2///
+import java.util.Scanner;
+public class Task2 {
+    public static void main(String []args){
+        int [] source = {10,20,30,40,50,60};
+        Scanner sc= new Scanner (System.in);
+        System.out.print("Enter the value of k: ");
+        int k=sc.nextInt();
+        rotateLeft(source,k);
+        sc.close();
+    }
+    public static void rotateLeft(int []source, int k){
+        for (int i=0, j=i+k;i<k;i++,j++){
+            int temp= source[i];
+            source[i]=source[j];
+            source[j]=temp;
+        }
+        for(int i=0;i<source.length;i++){
+            System.out.print(source[i]+",");
+        }
+    }
+}
+
+**********************************************************************************************************************************************************************************
+
+/// Task__3///
+import java.util.Scanner;
+public class Task3 {
+    public static void main(String []args){
+        Scanner sc= new Scanner(System.in);
+        int []source = {10,20,30,40,50,0,0};
+        System.out.print("The number of the Index you want to remove: ");
+        int idx = sc.nextInt();
+        System.out.println("");
+        System.out.print("The size of the Array: ");
+        int size = sc.nextInt();
+        remove(source,size,idx);
+        sc.close();
+    }
+    public static void remove(int []source,int size, int idx){
+        for (int i= idx;i<size-1;i++){
+             int temp = source[i+2];
+             source[i] = source[i+1];
+             source[i+1] = temp;
+
+        }
+        for(int i=0;i<source.length;i++){
+            System.out.print(source[i]+",");
+        }
+    }
+}
+
+*****************************************************************************************************************************************************
+
+/// Task__4///
+import java.util.Scanner;
+public class Task4 {
+    public static void main(String []args){
+        int [] source = {10,2,30,2,50,2,2,0,0};
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the size of the array: ");
+        int size = sc.nextInt();
+        System.out.print("Put the element you want to remove: ");
+        int k= sc.nextInt();
+        removeAll(source,size,k);
+        sc.close();
+    }
+    public static void removeAll(int [] source,int size, int k){
+        int source2 [] = new int [size];
+        int j=0 ;
+        for (int i = 0;i<size;i++){
+            if(source[i]!=k){
+                source2[j]= source[i]; // I want to fill an empty array without selected elements and problem is it fills up zero rather than any other number.//
+                j++;
+            }
+        }
+        for(int i=0;i<source2.length;i++){   ///java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5///
+            System.out.print(source2[i]+",");
+        }
+
+    }
+}
+
+***********************************************************************************************************************************************************************************************************
+
+/// Task__5///
+import java.util.Scanner;
+public class Task5 {
+    public static void main(String [] args){
+        Scanner sc = new Scanner (System.in);
+        System.out.print("Enter the index of array: ");
+        int n = sc.nextInt();
+        int source[] = new int[n];
+        System.out.println("Enter the elements of array: ");
+        for (int i = 0;i<n;i++){
+            int l=sc.nextInt();
+            source[i]=l;
+        }
+        Arraysorting(source);
+        sc.close();
+    }
+    static void Arraysorting(int source[]){
+       int temp = 0;
+       int temp2 = 0;
+       int count = 0;
+       for(int i = 1;i<source.length;i++){
+           for(int j=0;j<i;j++){
+               temp += source[j];
+           }
+           for(int k=i;k<source.length;k++){
+               temp2 +=source[k];
+           }
+           if(temp == temp2){
+               count = count+1;
+           }
+           else{
+               temp = 0;
+               temp2 = 0;
+           }
+       } 
+       if(count == 1){
+        System.out.print("True.");
+       }
+       else{
+           System.out.print("False");
+       }
+    }
+}
+
+***********************************************************************************************************************************************************
+
+/// Task__6///
+import java.util.Scanner;
+public class Task6 {
+    public static void main(String [] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the value of the n: ");
+        int n=sc.nextInt();
+        Arrayseries(n);
+        sc.close();
+    }
+    public static void Arrayseries(int n){
+        int array[] = new int[n*n];
+        int l = array.length-1;
+        for(int i=array.length-1;i>0;i--){
+            int t1 = 1;
+            int t= n;
+            int t2 = t;
+            int t3 = 0;
+            for (int j=0;j<=3;j++){
+                array[l-t3] =t2;
+                if(t2>0){
+                t2 = t2 - 1;
+                }
+                else{
+                    t2=0;
+                }
+                t3 = t3 +1;
+            }
+            t = t-1;
+            t1 = n - t1;
+           
+        }
+        for(int i=0;i<array.length;i++){
+            System.out.print(array[i]+",");
+        }
+    }
+}
+
+
+*********************************************************************************************************************************************************************************************************
+
+/// Task__7///
+public class Task7 {
+    public static void main(String []args)
+    {
+        int array[] = {1,1,2, 2, 1, 1,1,1};
+        maxBunch(array);
+    }
+    public static void maxBunch(int array []){
+        int temp = 0;
+        int max= 0;
+        for (int i=0;i<array.length-1;i++){
+        temp = array[i];
+        int count = 2;
+        for(int j=i+1;temp==array[j]&&j<array.length-1;++j){
+             count=count+1;
+             
+            }
+            if(count>max){
+                max = count;
+            }
+        }
+        System.out.print(max);
+        }
+    }
+
+**********************************************************************************************************************************************************************************************************
+
+/// Task__8///
+import java.util.ArrayList;
+public class Task8 {
+    public static void main(String []args){
+        int source[] = {4,5,6,6,4,3,6,4};
+        repetition(source);
+    }
+    public static void repetition(int [] source){
+        ArrayList<Integer> n=new ArrayList<Integer>();
+        int t = 0;
+        for (int i = 0; i< source.length;i++){
+            int count = 0;
+            for (int j=0;j<source.length;j++){
+                if(source[i]==source[j]){
+                    count = count+1;
+                    t= t+1;
+                }
+            }
+          n.add(count);
+        }
+        int count2 = 0;
+        for(int i=0;i<t;i++){
+            for(int j=i+1;j<t;j++){
+                count2 = count2 +1;
+            }
+        }
+        if (count2>0){
+            System.out.print("True");
+        }
+        else{
+            System.out.print("False");
+        }
+    }
+}
+
+
+**********************************************************************************************************************************************************************************
+
+/// Task__9///
+public class Task9 {
+    public static void main(String []args){
+        int array [] = {10,20,0,0,0,10,20,30};
+        int start =  5;
+        int size = 5;
+        palindrome(array,start,size);
+    }
+    public static void palindrome(int[] array, int start, int size) {
+        int array2[] = new int [size];
+        int c = 0;
+        for(int i=0;i<size-1;i++){
+            if(start+i<array.length){
+                array2[i] = array[start+i]; 
+            }
+            else if(start+i>array.length-size){
+                array2[i] = array [i];
+                c = c+1;
+            }
+            else{
+                break;
+            }
+        }
+        int f = 0;
+        int r = array2.length-1;
+         int c2= 0;
+        for (int i = 0;i<array2.length;i++){
+            if (array2[f]==array2[r]){
+                c2 = c2+1;
+            }
+            else {
+                break;
+            }
+            f = f+1;
+            r = r-1;
+        }
+        if (c2==size){
+            System.out.print("True");
+        }
+        else{
+            System.out.print("False");
+        }
+    }
+}
+
+
+****************************************************************************************************************************************************
+
+/// Task__10///
+import java.util.ArrayList;
+public class Task10 {
+    public static void main(String[]args){
+        int Carray1 [] = {40,50,0,0,0,10,20,30};
+        int Carray2 [] = {10,20,5,0,0,0,0,0,5,40,15,25};
+        int start1 = 5;
+        int size1 =  5;
+        int start2 = 8;
+        int size2 = 7;
+        Intersection(Carray1,Carray2,start1,start2,size1,size2);
+
+    }
+
+    public static void Intersection(int[] Carray1, int[] Carray2, int start1, int start2, int size1, int size2) {
+        int t1[] = new int [size1];
+        int l=0;  
+        int l2=0;  
+        for (int i=0;i<size1;++i){   
+              
+            if(start1<Carray1.length)  { /// For Carray1//
+            t1[i] = Carray1[start1];
+            start1 = start1+1; 
+        }
+        else {
+            
+            t1 [i]= Carray1[0+l];
+            l = l+1;
+        }
+        }
+        
+        int t2[] = new int [size2];
+        for (int i=0;i<size2;++i){ 
+               
+            if(start2<Carray2.length)  { /// For Carray1//
+            t2[i] = Carray2[start2];
+            start2 = start2+1; 
+        }
+        
+        else {
+              
+            t2[i]= Carray2[0+l2];
+            l2 = l2+1;
+        }
+}
+        ArrayList<Integer> n=new ArrayList<Integer>();
+        int c = 0;
+        for(int i=0;i<t2.length;i++){
+            int q = t2[i];
+            for(int j=0;j<t1.length;j++){
+                if(q==t1[j]){
+                   n.add(t1[j]);
+                    c = c+1;
+                }
+            }
+        }
+        
+            System.out.print(n);
+}
+}
+
+****************************************************************************************************************************************************************
