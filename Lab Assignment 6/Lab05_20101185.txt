@@ -1,0 +1,248 @@
+##########################################################################################################################################################################
+Task-1 
+def min(a,i,j) :
+    if i == j :
+        return i
+    if a[i] < a[min(a,i+1,j)]:
+        return i
+    else:
+        return min(a,i+1,j)
+def selectandsort(a,i,location = 0) :
+    if location == i :
+        return -1
+    min(a,location,i-1)
+    if min(a,location,i-1) != location :
+        temp = a[min(a,location,i-1)]
+        a[min(a,location,i-1)] = a[location]
+        a[location] = temp
+    selectandsort(a,i,location+1)
+arr = [3,1,2,5,6,7,4]
+i = len(arr)
+selectandsort(arr,i)
+for i in arr:
+    print(i,end=' ')
+############################################################################################################################################################################
+Task-2 
+def insertandsort(list,i):
+    if i<1:
+        return None
+    insertandsort(list,i-1)
+    temp = list[i-1]
+    j = i-2
+    while j>=0 and list[j]>temp:
+        list[j+1] = list[j]
+        j = j-1
+    list[j+1] = temp
+list = [3,1,2,5,6,7,4]
+insertandsort(list,len(list))
+print(list)
+#########################################################################################################################
+Task-3
+class Node:
+    def __init__ (self,data):
+        self.data = data
+        self.next = None
+class MyList:
+    def __init__ (self,data = None):
+        self.head=None
+        last=None
+        for i in data:
+            node = Node(i)
+            if self.head is None:
+                self.head=node
+                last=node
+            else:
+                last.next=node
+                last=node
+    def selectandsort(self):
+        item = self.head
+        index = None 
+        if self.head == None:
+            return 
+        else: 
+            while item != None :
+                index = item.next 
+                while index != None: 
+                    if item.data > index.data:
+                        temp = item.data 
+                        item.data = index.data 
+                        index.data = temp 
+                    index = index.next 
+                item = item.next 
+    def showList(self):
+        if self.head is None:
+            print("The List is empty")
+        else:
+            n=self.head
+        while n is not None:
+            print (n.data)
+            n=n.next
+list = [3,1,2,5,6,7,4]
+list1 = MyList(list)
+list1.selectandsort()
+list1.showList()
+####################################################################################################################################################################################
+Task-4 
+class Node:
+    def __init__ (self,data):
+        self.data = data
+        self.next = None
+class MyList:
+    def __init__ (self,data = None):
+        self.head=None
+        last=None
+        self.count = 0
+        for i in data:
+            node = Node(i)
+            if self.head is None:
+                self.head=node
+                last=node
+            else:
+                last.next=node
+                last=node
+            self.count =  self.count + 1
+    def bubbleandsort(self):
+        for i in range(self.count-1):
+            item = self.head
+            next = item.next
+            temp = None
+            while next:
+                if item.data > next.data:
+                    if temp == None:
+                        temp = item.next 
+                        next = next.next 
+                        temp.next = item 
+                        item.next = next
+                        self.head = temp 
+                    else: 
+                        temp2 = next 
+                        next = next.next 
+                        temp.next = item.next 
+                        temp = temp2 
+                        temp2.next = item 
+                        item.next = next 
+                else: 
+                    temp = item 
+                    item = next 
+                    next = next.next
+    def showList(self):
+        if self.head is None:
+            print("The List is empty")
+        else:
+            n=self.head
+        while n is not None:
+            print (n.data)
+            n=n.next
+list = [3,1,2,5,6,7,4]
+list1 = MyList(list)
+list1.bubbleandsort()
+list1.showList()
+######################################################################################################################################################################################################################
+Task-5
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        self.prev = None 
+def DoublyList(item,data):
+    node = Node(0)
+    node.data = data 
+    node.next = item
+    node.prev = None 
+    if item != None:
+        item.prev = node
+    item = node
+    return item
+def sorted(head,node):
+    item = None
+    if head == None :
+        head = node 
+    elif head.data >= node.data :
+        node.next = head 
+        node.next.prev = node 
+        head = node 
+    else : 
+        item = head 
+        while item.next != None and item.next.data < node.data :
+            item = item.next 
+        node.next = item.next 
+        if item.next != None:
+            node.next.prev = node 
+        item.next = node 
+        node.prev = item 
+    return head 
+def insertion(head):
+    sort = None 
+    item = head 
+    while item != None :
+        next = item.next 
+        item.prev = None 
+        item.next = None 
+        sort = sorted(sort,item)
+        item = next 
+    head = sort 
+    return head 
+def showList(item):
+    while item is not None:
+        print(item.data)
+        item.next
+list = [3,1,2,5,6,7,4]
+i = 0
+list1 = None
+j = 0
+while j < len(list):
+    list1 = DoublyList(list1,list[j])
+    j = j+1
+insertion(list1)
+#showList(list1)
+list = [3,1,2,5,6,7,4]
+i = 0
+list1 = None
+j = 0
+while j < len(list):
+    list1 = DoublyList(list1,list[j])
+    j = j+1
+insertandselect(list1)
+showList(list1)
+#############################################################################################################################################
+Task-6
+def insertandsort(list,i):
+    if i<1:
+        return None
+    insertandsort(list,i-1)
+    temp = list[i-1]
+    j = i-2
+    while(j>=0 and list[j]>temp):
+        list[j+1] = list[j]
+        j = j-1
+    list[j+1] = temp
+def binary_search(list,min,max,i):
+    if max>=min:
+        med = (max+min)//2
+        if list[med] == i:
+            return med
+        elif list[med] > i:
+            return binary_search(list,min,med-1,i)
+        else:
+            return binary_search(list,med+1,max,i)
+    else:
+        return -1
+list = [3,1,2,5,6,7,4]
+i = 1
+insertandsort(list,len(list))
+s = binary_search(list,0,len(list)-1,i)
+if s != -1:
+    print(s)
+else:
+    print(None)
+################################################################################################################################################
+Task-7 
+def fibonacci_number(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    else:
+        return fibonacci_number(n-1)+fibonacci_number(n-2)
+print(fibonacci_number(10))
+#################################################################################################################################################################

@@ -1,0 +1,172 @@
+######################################################################################
+TASK1
+class Node:
+    def _inti_(self,data):
+        self.item = data
+        self.ref = None
+class Mylist:
+    def _init_(self):
+        self.head = None
+#######################################################################################
+
+class Node:
+    def __init__ (self,data):
+        self.item = data
+        self.ref = None
+class MyList:
+    def __init__ (self,data = None):
+        self.head=None
+        last=None
+        for i in data:
+            node = Node(i)
+            if self.head is None:
+                self.head=node
+                last=node
+            else:
+                last.ref=node
+                last=node
+    def showList(self):
+        if self.head is None:
+            print("The List is empty")
+        else:
+            n=self.head
+            while n is not None:
+                print (n.item)
+                n=n.ref
+    def LinkedList(self):
+        i = self.head
+        while i is not None:
+            j = self.head
+            while j is not None:
+                j.item = i.item
+                j = j.ref
+            i = i.ref
+    def isEmpty(self):
+        if self.head is None:
+            return True;
+        else:
+            return False;
+    def clearself(self):
+        i = self.head
+        while i is not None:
+            self.head = None
+            i = i.ref
+    def insert(self, newElement):
+        if self.ref is None:
+            self.item = newElement
+    def insert(self, newElement, index):
+        c = self.head
+        i = 0
+        while c is not None :
+            i = i + 1
+            if c>index:
+                print("Out of Index")
+            else:
+                self.item = newElement
+            c = c.ref
+    def remove(self, deletekey):
+            i = self.head
+            while i is not None:
+                if (i.item == deletekey):
+                    i.item = None
+                i = i.ref
+            i=self.head
+            while i is not None:
+                print (i.item)
+                i=i.ref
+s = MyList([1,2,3,4])
+s.showList()
+s.remove(1)
+##################################################################################################
+class Node:
+    def __init__ (self,data):
+        self.item = data
+        self.ref = None
+class MyList:
+    def __init__ (self,data = None):
+        self.head=None
+        last=None
+        for i in data:
+            node = Node(i)
+            if self.head is None:
+                self.head=node
+                last=node
+            else:
+                last.ref=node
+                last=node
+     
+    def EvenNumber(self):
+        i = self.head
+        jhead = None
+        while i is not None:
+            if i.item % 2 == 0:
+                jhead = i.item 
+            i = i.ref   
+    def googlefind(self,a):
+        i = self.head
+        while i is not None:
+            if i.item  == a :
+                print("False")
+                break
+            else :
+                print("True")
+                break
+            i = i.ref
+        while i is not None:
+            if i.item == a:
+                print("False")
+                break
+            else :
+                print("True")
+                break
+            i = i.ref
+    def reverseList(self):
+        i = self.head
+        array = []
+        while i is not None:
+            temp = i.item
+            array += [temp]      
+            i = i.ref
+        c = 0
+        for i in range(len(array)):
+            print(array[c-1])
+            c = c - 1
+    def  sorting(self):
+        i = self.head
+        while i is not None:
+            j = self.head
+            while j is not None:
+                if i.item<j.item:
+                    temp = i.item
+                    i.item = j.item
+                    j.item = temp
+                j = j.ref                    
+            i = i.ref
+        n=self.head
+        while n is not None:
+            print (n.item)
+            n=n.ref
+    def Sum(self):
+        i = self.head
+        temp = 0
+        while i is not None:
+            temp = temp  + i.item
+            i = i.ref
+        print(temp)
+    def rolotateeeter(self,r,k):
+        i = self.head
+        a = []
+        c = 0
+        while i is not None :
+            a[0] =  [i.item]
+            i = i.ref
+        
+        
+            
+s = MyList([8,5,4,2,1])
+s.EvenNumber()
+s.googlefind(2)
+s.reverseList()
+s.sorting()
+s.Sum()
+#############################################################################
